@@ -23,7 +23,7 @@ threading.Thread(target=run_web_server, daemon=True).start()
 # ===== PLACE YOUR CREDENTIALS HERE =====
 API_ID = 34949424
 API_HASH = "edd20208c3046743b9fc0cbbd39a1b3d"
-BOT_TOKEN = "7077933360:AAGz65EM0ZwPZvno_nJdQDYdBzXrUupm_VU"
+BOT_TOKEN = "7077933360:AAF2TFCnz26CHus-LZ7--hqyQ5lrL5LMg6s"
 
 app = Client("CompressorBot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
