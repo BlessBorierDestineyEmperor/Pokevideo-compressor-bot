@@ -1,13 +1,30 @@
+from http.server import HTTPServer, BaseHTTPRequestHandler
+import threading
 import os
 import asyncio
 import subprocess
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+
+class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"Bot is Running!")
+
+def run_web_server():
+    port = int(os.environ.get("PORT", 8080))
+    server = HTTPServer(('0.0.0.0', port), SimpleHTTPRequestHandler)
+    server.serve_forever()
+
+# Start HTTP server in a separate thread
+threading.Thread(target=run_web_server, daemon=True).start()
 
 # ===== PLACE YOUR CREDENTIALS HERE =====
-API_ID = 34949424  # Replace with your API ID from my.telegram.org
-API_HASH = "edd20208c3046743b9fc0cbbd39a1b3d"  # Replace with your API Hash
-BOT_TOKEN = "7077933360:AAGz65EM0ZWPZvno_nJdQDYdBzXrUupm_VU"  # Replace with your Bot Token from @BotFather
+API_ID = 34949424
+API_HASH = "edd20208c3046743b9fc0cbbd39a1b3d"
+BOT_TOKEN = "7077933360:AAGz65EM0ZwPZvno_nJdQDYdBzXrUupm_VU"
+"  # Replace with your Bot Token from @BotFather
 
 app = Client("CompressorBot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
